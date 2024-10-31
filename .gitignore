@@ -1,9 +1,6 @@
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-nextjs\nextjs-dashboard\.next
-nextjs\nextjs-dashboard\node_modules
-
 # local env files
 .env*.local
 .env
@@ -14,3 +11,7 @@ nextjs\nextjs-dashboard\node_modules
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# only for nextjs 
+bilibili_js/
+upload_picture/
