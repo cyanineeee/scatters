@@ -11,7 +11,3 @@
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# only for nextjs 
-bilibili_js/
-upload_picture/
