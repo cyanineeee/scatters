@@ -12,6 +12,6 @@
 *.tsbuildinfo
 next-env.d.ts
 
-# dev nextjs
+#only develop nextjs
 bilibili_js/
 upload_picture/
