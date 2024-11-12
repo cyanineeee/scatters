@@ -19,9 +19,11 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
+  //服务器端函数通过bind方法绑定传入的参数 formData和其他(id)返回一个(formData: FormData) => Promise<void>这样的函数对象
+  // 表单submit时 会将表单内容封装为一个formData 传递给服务器端对应函数updateInvoice函数处理
   const updateInvoiceWidthId = updateInvoice.bind(null, invoice.id);
   return (
-    <form>
+    <form action={updateInvoiceWidthId}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
