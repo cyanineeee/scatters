@@ -9,8 +9,8 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
-import { updateInvoice } from '@/app/lib/actions';
-
+import { updateInvoice,State } from '@/app/lib/actions';
+import { useActionState } from 'react';
 
 export default function EditInvoiceForm({
   invoice,
@@ -21,9 +21,11 @@ export default function EditInvoiceForm({
 }) {
   //服务器端函数通过bind方法绑定传入的参数 formData和其他(id)返回一个(formData: FormData) => Promise<void>这样的函数对象
   // 表单submit时 会将表单内容封装为一个formData 传递给服务器端对应函数updateInvoice函数处理
-  const updateInvoiceWidthId = updateInvoice.bind(null, invoice.id);
+  const initialState: State = { message: null, errors: {} }
+  const updateInvoiceWidthId = updateInvoice.bind(null,invoice.id);
+  const [state, formAction] = useActionState(updateInvoiceWidthId, initialState);
   return (
-    <form action={updateInvoiceWidthId}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -47,6 +49,8 @@ export default function EditInvoiceForm({
               ))}
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
+          </div>
+          <div>
           </div>
         </div>
 
