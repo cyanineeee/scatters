@@ -1,19 +1,27 @@
-import {type Token} from './token/token'
+import { SimpleScanner } from "./scanner/simpleScanner";
+import { TextScanner } from "./scanner/textScanner";
+import { Token } from "./token/token";
 
-export declare interface Tokenizer {
-    plain_markdown: string;
-    tokenize: (plain_markdown: string) => Token[]
-}
+export class Tokenizer {
+    sps = new SimpleScanner()
+    ts = new TextScanner()
 
-export class MarkdownTokenizer implements Tokenizer{
-    plain_markdown: string;
+    token_as_array(plain_markdown: string): Token[]{
 
-    tokenize( plain_markdown: string){
-        const name = {
-            typeName: "Asd",
-            value:"asd"
+        var tokens: Token[] = []
+        if(plain_markdown === "" || plain_markdown === null){
+            return null
+        }else{
+            const token = this.scan_one_token(plain_markdown)
+            tokens.concat(this.token_as_array(plain_markdown.slice(token.length)))
+            return tokens
         }
 
-        return [name]
+    }
+
+    scan_one_token(plain_markdown: string): Token{
+        return this.sps.scan(plain_markdown) 
+            ? this.sps.scan(plain_markdown) 
+            : this.ts.scan(plain_markdown)
     }
 }
