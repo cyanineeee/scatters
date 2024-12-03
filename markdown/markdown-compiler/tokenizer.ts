@@ -3,25 +3,31 @@ import { TextScanner } from "./scanner/textScanner";
 import { Token } from "./token/token";
 
 export class Tokenizer {
-    sps = new SimpleScanner()
-    ts = new TextScanner()
+    identifier = new SimpleScanner()
+    text = new TextScanner()
 
+    /** 
+     * 输入一个plain_markdown
+     * 
+     * 输出一个由Token对象组成的列表
+    */
     token_as_array(plain_markdown: string): Token[]{
-
-        var tokens: Token[] = []
+        //递归结束条件
         if(plain_markdown === "" || plain_markdown === null){
             return null
-        }else{
-            const token = this.scan_one_token(plain_markdown)
-            tokens.concat(this.token_as_array(plain_markdown.slice(token.length)))
-            return tokens
         }
-
+        const token = this.scan_one_token(plain_markdown)
+        return [token].concat(this.token_as_array(plain_markdown.slice(token.length)))
     }
 
+    /** 
+     * 输入一个plain_markdown
+     * 
+     * 输出一个Token对象
+    */
     scan_one_token(plain_markdown: string): Token{
-        return this.sps.scan(plain_markdown) 
-            ? this.sps.scan(plain_markdown) 
-            : this.ts.scan(plain_markdown)
+        return this.identifier.scan(plain_markdown)
+            ? this.identifier.scan(plain_markdown)
+            : this.text.scan(plain_markdown)
     }
 }

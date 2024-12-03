@@ -10,6 +10,6 @@ export class Token{
       }
 
       to_String() {
-        return this.value === null ? `<${this.typeName}>` : `<${this.typeName}=${this.value}>`
+        return this.value === null ? `<${this.typeName}>` : `<${this.typeName}="${this.value}">`
       }
 }
