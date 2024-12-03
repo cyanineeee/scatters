@@ -5,5 +5,6 @@ export const token_to_str_list = (tokens: Token[]):string[] | void =>{
         if(!token){return}
         console.log(token.to_String())
         return token.to_String()
-    }).filter(item => item!=undefined )
+    })
+    // .filter(item => item!=undefined )
 } 
