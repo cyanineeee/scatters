@@ -5,20 +5,28 @@ const tokenzier = new Tokenizer()
 
 //测试scan_one_token方法
 function testOneToken(){
-    const plain_markdown_test_list = ["_","hello","*","\n","_mahe","\nasd","_HEllo*","_Hello_ *thanks* \n ****"]
+    const plain_markdown_test_list = ["_","hello","*","\n","_mahe","\nasd","_(HEl((lo*","_Hello_ *tha)nks* \n ****"]
     for (var i of plain_markdown_test_list){
         console.log(tokenzier.scan_one_token(i))
     }
 }
 
 //测试token_as_array方法
-function testTokenArray(){
-    // const plain_markdown_test_list = ["_","hello","*","\n","_mahe","\nasd","_HEllo*","_Hello_ *thanks* \n ****","",null]
-    // const plain_markdown_test_list = ["_","*","hello","\n"]
-    const plain_markdown_test_list = ["_hello","*\n_    _"]
-    for (var i of plain_markdown_test_list){
+function testTokenArray(plain_markdown?){
+
+    const plain_markdown_test_list = ["_hello",
+        "*\n_  **[hello]  _",
+        "",
+        null,
+        undefined,
+        "_mahe",
+        "\nasd",
+        `_(HEl((lo*","_Hello_ *tha)nks* \n ****`]
+    //应该在调用的时候做try catch处理
+    for (var i of plain_markdown){
         console.log(token_to_str_list(tokenzier.token_as_array(i)))
     }
+
 }
 
 testTokenArray()

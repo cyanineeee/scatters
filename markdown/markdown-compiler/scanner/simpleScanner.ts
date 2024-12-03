@@ -5,7 +5,11 @@ export class SimpleScanner {
         "_": "UNDERSCORE",
         "*": "STAR",
         "\n": "NEWLINE",
-        "EOF":"EOF"
+        "EOF":"EOF",
+        "[": "LEFTSQUARE",
+        "]": "RIGHTSQUARE",
+        "(": "LEFTPARENTHESIS",
+        ")":"RIGHTPARENTHESIS"
     }
 
     scan(plain_token: string):Token {

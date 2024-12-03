@@ -13,11 +13,12 @@ export class Tokenizer {
     */
     token_as_array(plain_markdown: string): Token[]{
         //递归结束条件
-        if(plain_markdown === "" || plain_markdown === null){
+        if(plain_markdown === "" || plain_markdown === null || plain_markdown === undefined){
             return []
         }
         const token = this.scan_one_token(plain_markdown)
         return [token].concat(this.token_as_array(plain_markdown.slice(token.length)))
+
     }
 
     /** 
